@@ -2,21 +2,21 @@
   "development": {
     "username": "postgres",
     "password": "developer",
-    "database": "api-login",
+    "database": "api_nodejs",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "developer",
-    "database": "api-login",
+    "database": "api_nodejs",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "developer",
-    "database": "api-login",
+    "database": "api_nodejs",
     "host": "localhost",
     "dialect": "postgres"
   }

@@ -1,19 +1,20 @@
 const express = require('express');
+const { PORT } = require('./config/config'); // Carga configuración
 const authRoutes = require('./routes/authRoutes');
-const dotenv = require('dotenv');
-dotenv.config();
+const productRoutes = require('./routes/productRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+
 const app = express();
-const userRoutes = require('./routes/userRoutes');
 
 // Middlewares
-app.use(express.json()); // Para parsear JSON en las solicitudes
+app.use(express.json());
 
 // Rutas
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/categories', categoryRoutes);
 
-const PORT = process.env.PORT || 3000;
-
+// Servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

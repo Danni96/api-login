@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User } = require('../../models'); // Asegúrate de que el modelo se importe correctamente
+const { User } = require('../../models');
+
 
 const register = async (req, res) => {
     try {
@@ -13,7 +14,7 @@ const register = async (req, res) => {
         }
 
         // Cifrar la contraseña
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 12);
 
         // Crear el usuario
         const newUser = await User.create({

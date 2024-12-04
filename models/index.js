@@ -16,14 +16,15 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Cargar todos los modelos dinámicamente
 fs
   .readdirSync(__dirname)
   .filter(file => {
     return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      file.slice(-3) === '.js' &&
-      file.indexOf('.test.js') === -1
+      file.indexOf('.') !== 0 &&        // Excluir archivos que comienzan con punto
+      file !== basename &&               // Excluir el archivo actual (index.js)
+      file.slice(-3) === '.js' &&        // Filtrar solo archivos .js
+      file.indexOf('.test.js') === -1    // Excluir archivos de test
     );
   })
   .forEach(file => {
@@ -31,6 +32,7 @@ fs
     db[model.name] = model;
   });
 
+// Asociar los modelos si es necesario
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
