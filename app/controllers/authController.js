@@ -7,23 +7,19 @@ const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // Verificar si el usuario ya existe
         const userExists = await User.findOne({ where: { email } });
         if (userExists) {
             return res.status(400).json({ message: 'El usuario ya existe' });
         }
 
-        // Cifrar la contraseña
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        // Crear el usuario
         const newUser = await User.create({
             name,
             email,
             password: hashedPassword,
         });
 
-        // Generar un token JWT
         const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
             expiresIn: '1h',
         });

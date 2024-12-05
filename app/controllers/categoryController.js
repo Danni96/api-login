@@ -5,14 +5,12 @@ const createCategory = async (req, res) => {
     const { name } = req.body;
   
     try {
-      // Verificar si la categoría con el mismo nombre ya existe
       const existingCategory = await Category.findOne({ where: { name } });
   
       if (existingCategory) {
         return res.status(400).json({ message: 'Ya existe una categoría con ese nombre' });
       }
-  
-      // Si no existe, crear la nueva categoría
+
       const newCategory = await Category.create({ name });
       res.status(201).json(newCategory);
   
@@ -23,7 +21,6 @@ const createCategory = async (req, res) => {
   };
   
 
-// Obtener todas las categorías
 const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.findAll();
